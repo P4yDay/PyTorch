@@ -41,4 +41,16 @@ output = sigmoid_activation(z2)
 ## Formula 
 ## loss = y - output
  
- ## MINIMIZE THE ERROR IN 
+## MINIMIZE THE ERROR IN THE OUTPUT LAYER BY MAKING MARGINAL CHANGES IN BIAS AND WEIGHT
+# fUNC TO CALCULATE THE DERIVATIVE OF ACTIVATION
+def sigmond_delta(x):
+    return x * (1 - x)
+
+## compute derivate of error terms
+delta_output = sigmond_delta(output)
+delta_hidden = sigmond_delta(a1)
+
+## backpass the changes to previous layers
+d_outp = loss * delta_output
+loss_h = torch.mm(d_outp, w2.t())
+d_hidn = loss_h * delta_hidden
