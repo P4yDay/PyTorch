@@ -56,7 +56,9 @@ loss_h = torch.mm(d_outp, w2.t())
 d_hidn = loss_h * delta_hidden
 
 #UPDATING THE WEIGHTS AND BIAS USING DELTA CHANGES RECEIVED FROM THE ABOVE BACKPROP STEP
-learning_rate = 0.2
+learning_rate = 0.1
 
 w2 += torch.mm(a1.t(), d_outp) * learning_rate
 w1 += torch.mm(x.t(), d_hidn) * learning_rate
+b2 += d_outp.sum() * learning_rate
+b1 += d_hidn.sum() * learning_rate
