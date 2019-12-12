@@ -42,4 +42,4 @@ class Model(nn.Module):
 model = Model()
 
 # Define the loss function and the optimizer using nn and optim package
-loss_function = 
+loss_function =
