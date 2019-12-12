@@ -1,4 +1,5 @@
 import torch
+from torch.nn.modules import loss
 
 # creating  a simple three-layered network having 5 nodes in the input layer, 3 in the hidden layer, and 1 in the output layer.
 

@@ -3,7 +3,8 @@ from torchvision.datasets import MNIST
 from torch.utils.data import DataLoader
 from torch.utils.data.sampler import SubsetRandomSampler
 import torch.nn.functional as F
-from torch import optim
+from torch import nn, optim
+import numpy as np
 
 ## 1ST TRANSFORMATION CONVERTS THE RAW DATA INTO TENSOR VARIABLES 
 # AND THE SECOND TRANSFORMATION PERFORMS NORMALIZATION
@@ -42,4 +43,25 @@ class Model(nn.Module):
 model = Model()
 
 # Define the loss function and the optimizer using nn and optim package
-loss_function =
+loss_function = nn.CrossEntropyLoss()
+optimizer = optim.SGD(model.parameters(), lr = 0.01, weight_decay = 1e-6, momentum = 0.9, nesterov = True)
+
+## Time to train the model * Insert Rocky Theme Song *
+for epoch in range(1, 11):  # run model for 10 epochs
+    train_loss, valid_loss = [], []
+    ## Training part
+    model.train()
+    for data, target in trainloader:
+        optimizer.zero_grad()
+        output = model(data)
+        loss = loss_function(output, target)
+        loss.backward()
+        optimizer.step()
+        train_loss.append(loss.item())
+    ## evaluation part
+    model.eval()
+    for data, target in validloader:
+        output = model(data)
+        loss = loss_function(output, target)
+        valid_loss.append(loss.item())
+    print ("Epoch:", epoch, "Training Loss: ", np.mean(train_loss), "Valid Loss: ", np.mean(valid_loss))
