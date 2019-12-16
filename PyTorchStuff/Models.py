@@ -38,3 +38,18 @@ class SimpleNet(nn.Module):
         output = self.fc(output)
 
         return output
+
+class Unit(nn.Module):
+    def __init__(self, in_channels, out_channels):
+        super().__init__()
+
+        self.conv = nn.Conv2d(in_channels=in_channels, kernel_size=3, out_channels=out_channels, stride=1, padding=1)
+        self.bn = nn.BatchNorm2d(num_features=out_channels)
+        self.relu = nn.ReLU()
+
+    def forward(self, input):
+        output = self.conv(input)
+        output = self.bn(output)
+        output = self.relu(output)
+
+        return output
