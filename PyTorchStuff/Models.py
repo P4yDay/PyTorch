@@ -71,3 +71,9 @@ train_transformations = transforms.Compose([
     transforms.Normalize((0.5,0.5,0.5), (0.5,0.5,0.5))
 ])
 
+# Load the training set
+train_set = CIFAR10(root="./data", train=True, transform=train_transformations, download=True)
+
+# Create a loder for the training set
+train_loader = DataLoader(train_set, batch_size=32, shuffle=True, num_workers=4)
+
