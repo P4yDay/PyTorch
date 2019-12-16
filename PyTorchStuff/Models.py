@@ -3,6 +3,32 @@ import torch.nn as nn
 from torchvision.datasets import CIFAR10
 from torchvision.transforms import transforms
 from torch.utils.data import DataLoader
+from torch.optim import Adam
+
+
+#Check if gpu support is available
+cuda_avail = torch.cuda.is_available()
+
+# Create model, optimizer and loss function
+model = SimpleNet(num_classes=10)
+
+#If cuda is aval, move the model to the GPU
+if cuda_avail:
+    model.cuda()
+
+#Define opimizer and loss function
+optimizeer = Adam(model.parameters(), lr=0.001,weight_decay=0.0001)
+loss_fn = nn.CrossEntropyLoss()
+
+# Create learning rate
+def adjust_learning_rate(epoch):
+    lr = 0.001
+
+    if epoch
+
+
+
+
 
 class Unit(nn.Module):
     def __init__(self,in_channels,out_channels):
