@@ -63,3 +63,11 @@ class SimpleNet(nn.Module):
         output = output.view(-1,128)
         output = self.fc(output)
         return output
+
+train_transformations = transforms.Compose([
+    transforms.RandomHorizontalFlip(),
+    transforms.RandomCrop(32, padding=4),
+    transforms.ToTensor(),
+    transforms.Normalize((0.5,0.5,0.5), (0.5,0.5,0.5))
+])
+
